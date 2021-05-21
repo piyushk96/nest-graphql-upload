@@ -6,6 +6,8 @@ export class AllExceptionFilter implements GqlExceptionFilter {
   catch(exception: any) {
     // Error handlers for different errors
 
+    console.log('****Inside exception filter****', exception)
+
     if (exception.status) {
       return new HttpException(
         HttpException.createBody(
