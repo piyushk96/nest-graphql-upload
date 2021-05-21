@@ -1,9 +1,14 @@
 import { createWriteStream } from 'fs';
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
 
 @Resolver()
 export class FileResolver {
+  @Query(() => String, { name: 'test' })
+  test() {
+    return 'hi';
+  }
+
   @Mutation(() => Boolean)
   async upload(@Args('file', { type: () => GraphQLUpload }) file: FileUpload) {
     const { filename, mimetype, encoding, createReadStream } = file;
